@@ -1,0 +1,400 @@
+﻿s<!DOCTYPE html>
+<!--<script src="script.js"></script>-->
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+<link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Author_NFT</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@200&display=swap');
+        table {
+            border-spacing: 10px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        h2 {
+            text-align: center;
+        }
+
+        .text {
+            font-family: 'IBM Plex Sans KR', sans-serif;
+            font-size: 42px;
+            text-align: center;
+
+        }
+
+        .s_text{
+            font-family: 'IBM Plex Sans KR', sans-serif;
+            font-size:20px;
+            text-align: center;
+        }
+
+        .img{
+            display : block;
+            margin : auto;
+        }
+
+        td {
+            font-family: 'IBM Plex Sans KR', sans-serif;
+            font-size: 20px;
+        }
+
+        .nft_btn{
+            border: 0;
+            outline: none;
+            font-size: 20px;
+            padding: 20px;
+            background-color: transparent;
+        }
+
+        input {
+            font-family: 'IBM Plex Sans KR', sans-serif;
+            width: 918px;
+            height: 32px;
+            font-size: 15px;
+            border: 0;
+            border-radius: 15px;
+            outline: none;
+            padding-left: 10px;
+            background-color: rgb(233, 233, 233);
+        }
+
+        textarea {
+            background-color: rgb(233, 233, 233);
+        }
+
+        .submit {
+            width: 400px;
+        }
+
+
+
+        input.btn {
+            height:100%;
+        }
+
+            .btn:hover {
+                /* 버튼에 마우스 오버한 경우에 ::after 요소의 컬러를 애니메이션하기 위해 투명도로 변경 */
+                background-color: transparent;
+                /* or background-color: rgba(0,0,0,0); */
+                color: #0B93BD;
+            }
+
+        .submit::after {
+            /*
+        * 요소에 텍스트도 없는 빈 요소이기 때문에 플롯된 요소 영역에 자리잡게 된다.
+        * 만약 텍스트가 있다면 텍스트 노드는 떨어지겠지만 해당 영역은 플롯 요소가 100%를 사용하고 있기 때문에 플롯 요소 영역과 겹친다.
+        */
+            display: block;
+            width: 0;
+            height: 74px;
+            background-color: #fbfbfb;
+            -webkit-transition: .3s ease;
+            -moz-transition: .3s ease;
+            -o-transition: .3s ease;
+            -ms-transition: .3s ease;
+            transition: .3s ease;
+            content: "";
+        }
+
+        .submit:hover::after {
+            /* 마우스 오버시 width:0 을 100% 로 변경하여 배경컬러를 가득차도록 하여 애니메이션 효과를 나타낸다. */
+            width: 200px;
+            background-color: white;
+        }
+
+        .wrapper{
+            display:flex;
+            flex-direction:row;
+            justify-content:space-between;
+            /* border:1px solid purple; */
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+  
+        .info-container > p {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+            Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+            
+            text-align: left;
+        }
+  
+        .info-container > .owner {
+            font-size:12px;
+            font-weight: bold;
+            color:#C6C2C6;
+            padding-top: 5px;
+        }
+        
+        .info-container > .name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #ffffff;
+            padding-top:10px;
+        }
+        
+        .price-container{
+            /* border:1px solid green; */
+        
+        }
+        
+        .price-container > .price-label{
+            font-size:12px;
+            font-weight: bold;
+            color:#C6C2C6;
+            padding-top: 5px;
+        }
+        
+        .price-container > .price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #ffffff;
+            padding-top:10px;
+        }
+        .nft-image {
+            width: 240px;
+            height: 170px;
+            margin-top: 5px;
+            border-radius: 20px;
+        }
+        
+        .card{
+            animation:cardHoverAnimation 1s;
+            /* animation-iteration-count: infinite; */            
+        }
+  
+        .card:focus{
+            outline: none;
+        }
+        .default-button {
+            border:none;
+            background-color: transparent;
+            color:#ffffff;
+            border:1px solid #ffffff;
+            border-radius: 15px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+            Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+            cursor:pointer;
+            padding:2px;
+        }
+        
+        
+        .like-container{
+            display: flex;
+            flex-direction: row;
+            margin-right: 10px;
+            text-align:center;
+        }
+  
+        .like{
+            /* width: 30px; */
+            /* height: 30px; */
+            margin-right: 10px;
+            background-color: transparent;
+            border:none;
+            cursor:pointer;
+            display:flex;
+            flex-direction: row;
+        }
+        
+        .like-count{
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+            Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+            font-size:15px;
+            margin-top:5px;
+            color:#ffffff;
+        }
+
+        #header {
+            height: 77px;
+            /* border: 0.001px solid red; */
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            position: fixed;
+            /* margin-bottom: 13rem; */
+            top: 0;
+            z-index: 1;
+            right: 0;
+            left: 0;
+            background: rgb(94, 103, 250);
+        }
+
+        #logo {
+            color: #ffffff;
+            padding: 10px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+                Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+            font-weight: bold;
+            font-size: 24px;
+            text-decoration: none;
+            border: none;
+        }
+
+        #connect-wallet {
+            width: 180px;
+            height: 40px;
+            background-color: #ffffff;
+            border: none;
+            border-radius: 50px;
+            padding: 10px;
+            margin-left: 30px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+                Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+            cursor: pointer;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        button#create {
+            width: 140px;
+            height: 50px;
+            margin-left: 20px;
+            border-radius: 30px;
+            font-size:21px;
+            border: none;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+                Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+            background-color: transparent;
+            border: 2px solid #ffffff;
+            color: #ffffff;
+            cursor: pointer;
+        }
+
+        #header #header-buttons .fa.fa-angle-down { 
+            margin-left: 6px; 
+        }
+
+        #header #header-buttons ul {
+            font-size: 0;
+            margin: 0;
+            padding: 0;
+        }
+
+        #header > #header-buttons > #create > ul > li { 
+            margin-left: 6px; 
+            visibility: hidden;
+        }
+
+        #header > #header-buttons > #create > ul:hover  > li{ 
+            margin-left: 6px; 
+            visibility: visible;
+        }
+
+        #header #header-buttons ul li a {
+            color: #fff;
+            display: block;
+            font-size: 14px;
+            padding: 15px 14px;
+            transition: 0.3s linear;
+        }
+
+        #header #header-buttons #create ul li:hover { background: transparent; } /*회원정보, 작가 정보 배경 색*/
+
+        #header #header-buttons ul li ul {
+            border-bottom: 5px solid #2ba0db;
+            display: none;
+            position: absolute;
+            width: 250px;
+        }
+
+        #header #header-buttons ul li ul li {
+            border-top: 1px solid #444;
+            display: block;
+        }
+
+        #header #header-buttons ul li ul li:first-child { border-top: none; }
+
+        #header #header-buttons ul li ul li a {
+            background: #373737;
+            display: block;
+            padding: 10px 14px;
+        }
+
+        #header #header-buttons ul li ul li a:hover { background: #126d9b; }
+
+        #header #header-buttons .fa.fa-angle-down { margin-left: 6px; }
+
+
+    </style>
+</head>
+<body style="background-color: rgb(181, 174, 244)">
+    <div id="header" style="background-color:#514A9D">
+        <a id="logo" onClick="location.href='/'">NFT Marketplace</a>
+        <link rel="stylesheet" href="{{url_for('static', filename='css/header.css')}}">
+        <div id="header-buttons">
+            <button id="create" onClick="location.href='info_author'">Info</button>
+                <button id="create" onClick="location.href='NFTs'">
+                    NFTs
+                </button>
+                <button id="create" onClick="location.href='nft_create'">
+                    CreateNFTs
+                </button>
+                <button id="create" onClick="location.href='authorNFT'">
+                    MyPage
+                </button>
+                <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+                <script>
+                    const ethereumButton = document.querySelector('#connect-wallet');
+
+                    ethereumButton.addEventListener('click', () => {
+                        //Will Start the metamask extension
+                        ethereum.request({ method: 'eth_requestAccounts' });
+                    });
+
+                </script>
+        </div>
+    </div>
+    <br><br><br><br>
+    <h2 class="text" style="color:white">My Page</h2>
+    <table>
+        <img src={{url_for('static', filename='img/basic_user.png')}} width="7%" class="img">
+        <br />
+        <b id="putName">User : </b>
+        <p></p>
+        <b id="Eth">이더리움 지갑 주소 : </b>
+        <p></p>
+        <b id="Klay">클레이튼 지갑 주소 : </b>
+        <p></p>
+        <b id="Eth_money">이더리움 지갑 잔액 : </b>{{Eth_money}}
+        <p></p>
+        <b id="Klay_money">클레이튼 지갑 잔액 : </b>{{Klay_money}}
+        <p></p>
+        <hr>
+        <button class="nft_btn" onClick="location.href='nft_create'">NFT 등록</button>
+        <button class="nft_btn" onClick="location.href='pagename1'">소유한 NFT</button>
+        <button class="nft_btn" onClick="location.href='pagename2'">판매 등록한 NFT</button>
+    </table>
+    <hr>
+
+    <script>
+        function nameHtml(userName) {
+            let nameHtml = `${userName}`
+            $('#putName').append(nameHtml)
+        }
+        function nameHtml2(welletName) {
+            let nameHtml = `${welletName}`
+            $('#Eth').append(nameHtml)
+        }
+        function nameHtml3(welletName2) {
+            let nameHtml = `${welletName2}`
+            $('#Klay').append(nameHtml)
+        }
+
+        function ShowCookie() {
+            let cookieFull = decodeURI(document.cookie);
+            let onlyForName = cookieFull.split(';');
+            for (var i = 0; i < onlyForName.length - 2; i++) {
+                nameHtml(onlyForName[0].split('=')[1]);
+                nameHtml2(onlyForName[1].split('=')[1]);
+                nameHtml3(onlyForName[2].split('=')[1]);
+            }
+        }
+        ShowCookie();
+    </script>
+</body>
+</html>

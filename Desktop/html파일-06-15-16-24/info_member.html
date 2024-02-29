@@ -1,0 +1,315 @@
+﻿<!DOCTYPE html>
+<!--<script src="script.js"></script>-->
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+<link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@200&display=swap');
+
+        .content {
+            text-align: center;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .text {
+            font-family: 'IBM Plex Sans KR', sans-serif;
+            font-size: 42px;
+        }
+
+        td {
+            font-family: 'IBM Plex Sans KR', sans-serif;
+            font-size: 20px;
+        }
+
+        input {
+            font-family: 'IBM Plex Sans KR', sans-serif;
+            width: 918px;
+            height: 32px;
+            font-size: 15px;
+            border: 0;
+            border-radius: 15px;
+            outline: none;
+            padding-left: 10px;
+            background-color: rgb(233, 233, 233);
+        }
+
+        textarea {
+            background-color: rgb(233, 233, 233);
+        }
+
+        .submit {
+            width: 400px;
+        }
+
+
+        .btn {
+            width: 200px; /* 부모 400px 영역 안의 100% 사용 */
+            text-align: center;
+            background-color: rgb(94, 103, 250);
+            color: white;
+            font-size: 17px;
+            padding-top: 22px;
+            padding-bottom: 22px;
+            -webkit-transition: all 0.3s;
+            -moz-transition: all 0.3s;
+            transition: all 0.3s;
+            box-sizing: border-box;
+            text-decoration: none;
+            border: 0;
+            outline: 0;
+        }
+
+        #header {
+            height: 77px;
+            /* border: 0.001px solid red; */
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            position: fixed;
+            /* margin-bottom: 13rem; */
+            top: 0;
+            z-index: 1;
+            right: 0;
+            left: 0;
+            background: rgb(94, 103, 250);
+        }
+
+        #logo {
+        color: #ffffff;
+        padding: 10px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+            Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+        font-weight: bold;
+        font-size: 24px;
+        text-decoration: none;
+        border: none;
+        }
+        
+        #connect-wallet {
+            width: 180px;
+            height: 40px;
+            background-color: #ffffff;
+            border: none;
+            border-radius: 50px;
+            padding: 10px;
+            margin-left: 30px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+                Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+            cursor: pointer;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        button#create {
+            width: 140px;
+            height: 50px;
+            margin-left: 20px;
+            border-radius: 30px;
+            font-size:21px;
+            border: none;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+                Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+            background-color: transparent;
+            border: 2px solid #ffffff;
+            color: #ffffff;
+            cursor: pointer;
+        }
+
+        #header #header-buttons .fa.fa-angle-down { 
+        margin-left: 6px; 
+        }
+
+        #header #header-buttons ul {
+            font-size: 0;
+            margin: 0;
+            padding: 0;
+        }
+
+    #header > #header-buttons > #create > ul > li { 
+      margin-left: 6px; 
+      visibility: hidden;
+    }
+
+    #header > #header-buttons > #create > ul:hover  > li{ 
+      margin-left: 6px; 
+      visibility: visible;
+    }
+
+    #header #header-buttons ul li a {
+    color: #fff;
+    display: block;
+    font-size: 14px;
+    padding: 15px 14px;
+    transition: 0.3s linear;
+}
+
+#header #header-buttons #create ul li:hover { background: transparent; } /*회원정보, 작가 정보 배경 색*/
+
+#header #header-buttons ul li ul {
+    border-bottom: 5px solid #2ba0db;
+    display: none;
+    position: absolute;
+    width: 250px;
+}
+
+#header #header-buttons ul li ul li {
+    border-top: 1px solid #444;
+    display: block;
+}
+
+#header #header-buttons ul li ul li:first-child { border-top: none; }
+
+#header #header-buttons ul li ul li a {
+    background: #373737;
+    display: block;
+    padding: 10px 14px;
+}
+
+#header #header-buttons ul li ul li a:hover { background: #126d9b; }
+
+#header #header-buttons .fa.fa-angle-down { margin-left: 6px; }
+
+        input.btn {
+            height:100%;
+        }
+
+            .btn:hover {
+                background-color: transparent;
+                color: #0B93BD;
+            }
+
+        .submit::after {
+            display: block;
+            width: 0;
+            height: 74px;
+            background-color: #fbfbfb;
+            -webkit-transition: .3s ease;
+            -moz-transition: .3s ease;
+            -o-transition: .3s ease;
+            -ms-transition: .3s ease;
+            transition: .3s ease;
+            content: "";
+        }
+
+        .submit:hover::after {
+            width: 200px;
+            background-color: white;
+        }
+    </style>
+<script type="text/javascript">
+    function send_go() {
+        var name = document.f.name.value ;
+        var age = document.f.age.value ;
+        var tel = document.f.tel.value ;
+        var pw = document.f.pw.value ;
+        var gender = document.f.gender.value;
+        var addr = document.f.addr.value;
+        
+        var hobby = document.f.hobby;
+        var addr2 = document.f.addr2;
+        
+        document.getElementById("res1").innerHTML = name;
+        document.getElementById("res2").innerHTML = age;
+        document.getElementById("res3").innerHTML = tel;
+        document.getElementById("res4").innerHTML = pw;
+        document.getElementById("res5").innerHTML = gender;
+        document.getElementById("res7").innerHTML = addr;
+        
+        // 배열
+        var k2="";
+        for ( var k in hobby) {
+            if(hobby[k].checked==true){
+                 k2  +=  hobby[k].value;
+            }
+            document.getElementById("res6").innerHTML =k2;
+        }
+        var k3="";
+        for ( var k in addr2) {
+            if(addr2[k].selected==true){
+                 k3  +=  addr2[k].value+"&nbsp;";
+            }
+            document.getElementById("res8").innerHTML =k3;
+        }
+    }
+</script>
+</head>
+<body style="background-color: rgb(181, 174, 244)">
+    <div id="header" style="background-color:#514A9D">
+        <a id="logo" onClick="location.href='/'">NFT Marketplace</a>
+        <div id="header-buttons">
+            <button id="create">
+                Info<i class='fa fa-angle-down'></i>
+                <ul>
+                    <li><a href="info_member">회원 정보</a></li>
+                    <li><a href="info_author">작가 정보</a></li>
+                </ul>
+                <button id="create">
+                    NFTs
+                </button>
+                <button id="create">
+                    NFTs
+                </button>
+                <button id="create" onClick="location.href='nft_create'">
+                    CreateNFTs
+                </button>
+                <button id="connect-wallet">Connect Wallect</button>
+                <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+                <script>
+                    const ethereumButton = document.querySelector('#connect-wallet');
+
+                    ethereumButton.addEventListener('click', () => {
+                        //Will Start the metamask extension
+                        ethereum.request({ method: 'eth_requestAccounts' });
+                    });
+
+                    $('#header #header-buttons button').hover(
+                        function () {
+                            $('ul', this).stop().slideDown(200);
+                        },
+                        function () {
+                            $('ul', this).stop().slideUp(200);
+                        }
+                    );
+                </script>
+        </div>
+    </div>
+    <hr><hr><hr><hr><hr><hr>
+    <h2 class="text" style="color:white">회원 정보</h2>
+    <div class="content">
+        <p style="color:white">회원 이름 : <input id="name" type="text" name="name" placeholder="Name" /></p>
+        <p style="color:white">지갑 주소 : <input id="wellet1" type="text" name="wallectt" placeholder="0x_____" /></p>
+        <p style="color:white">지갑 주소 : <input id="wellet2" type="text" name="wallectt" placeholder="0x_____" /></p>
+        <button class="btn" onClick="addCookie()" style="color:white" onClick="location.href='memberNFT'" value="보유한 NFT 확인">보유한 NFT 확인</button>
+        </div>
+        <br />
+
+        <script>
+            function setCookie(NameKey, NameValue) {
+                let strCookie = "";
+                strCookie = NameKey + '=' + encodeURIComponent(NameValue);
+                document.cookie = strCookie;
+            }
+
+            function addCookie() {
+                let nameKey = "UserName";
+                let nameValue = $('#name').val();	//입력한 값 가져옴
+                setCookie(nameKey, nameValue);
+                let nameWellet = "UserWellet1";
+                let wellet = $('#wellet1').val()
+                setCookie(nameWellet, wellet);
+                let nameWellet2 = "UserWellet2";
+                let wellet2 = $('#wellet2').val()
+                setCookie(nameWellet2, wellet2);
+                location.href = "memberNFT"	//그리고 다음 페이지로 간다
+            }
+        </script>
+</body>
+</html>
