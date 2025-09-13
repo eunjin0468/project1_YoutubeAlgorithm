@@ -36,28 +36,29 @@
 
 ### 1️⃣ 실행결과를 저장할 CSV 파일 생성
 
-[CSV 파일 생성]<img width="607" height="297" alt="1" src="https://github.com/user-attachments/assets/80a76f99-b3d4-4484-88cd-381427777d88" />
+<img width="607" height="297" alt="1" src="https://github.com/user-attachments/assets/80a76f99-b3d4-4484-88cd-381427777d88" />
 
 ### 2️⃣ 시크릿 모드 활용
 
 - 구독/시청 기록이 유튜브 환경에 영향을 미치지 않도록 시크릿 모드 사용  
 - 중복되지 않는 다양한 콘텐츠 제공 가능  
 
-![시크릿 모드](https://prod-files-secure.s3.us-west-2.amazonaws.com/e147a65b-e273-4ef6-8434-be616017032f/9e712b54-d4f0-417d-a402-7f0ea3c740fa/Untitled.png)
+<img width="543" height="365" alt="2" src="https://github.com/user-attachments/assets/ee51b134-4a4d-45d9-9df4-3a653d6008e9" />
 
 ### 3️⃣ 크롤링으로 유튜브 동영상 제목 수집
 
 - 초기 화면 20회 새로고침하며 영상 제목 수집  
-- `find`와 `get_text`를 이용해 원하는 제목만 텍스트로 추출  
+- `find`와 `get_text`를 이용해 원하는 제목만 텍스트로 추출
 
-![동영상 제목 수집](https://prod-files-secure.s3.us-west-2.amazonaws.com/e147a65b-e273-4ef6-8434-be616017032f/5002b90e-e9da-4c93-b25e-5f9cbede4e1e/Untitled.png)
+<img width="740" height="460" alt="3" src="https://github.com/user-attachments/assets/8eb25827-b979-409b-b2b5-765edab31b43" />
+
 
 ### 4️⃣ 상위 10개 키워드 추출
 
 - KRWordRank를 사용하여 의미 없는 키워드 제외  
 - 조건에 맞는 빈도수 높은 상위 10개 키워드 추출  
+<img width="658" height="224" alt="4" src="https://github.com/user-attachments/assets/3717a30e-94dc-4afe-a002-c80a4f4eb93c" />
 
-![키워드 추출](https://prod-files-secure.s3.us-west-2.amazonaws.com/e147a65b-e273-4ef6-8434-be616017032f/db210e02-71e5-47bf-8e66-6c3515f304e2/Untitled.png)
 
 ### 5️⃣ 댓글 크롤링
 
@@ -70,14 +71,14 @@
 - 저장된 댓글을 사용하여 다시 상위 10개 키워드 추출  
 - KRWordRank 활용  
 
-![댓글 기반 키워드](https://prod-files-secure.s3.us-west-2.amazonaws.com/e147a65b-e273-4ef6-8434-be616017032f/5527d00f-7f6a-4a2c-816a-a3190763cd2b/Untitled.png)
+<img width="855" height="254" alt="6" src="https://github.com/user-attachments/assets/d0379181-8cbd-4a24-9b0f-d6f65c2bc1e1" />
 
 ### 7️⃣ 추천 동영상 URL 제공
 
 - 중복 제거 후 키워드 기반 추천 영상 추출  
 - 키워드별 5개의 추천 영상 제목과 URL 제공 (href 형식)  
 
-![추천 영상 URL](https://prod-files-secure.s3.us-west-2.amazonaws.com/e147a65b-e273-4ef6-8434-be616017032f/0113c6c8-7085-4afb-a0fb-712c2da889bb/Untitled.png)
+<img width="703" height="434" alt="7" src="https://github.com/user-attachments/assets/0a8ab7f4-d775-4666-9150-fa3a3e097351" />
 
 ---
 
@@ -85,8 +86,6 @@
 
 - 사용자가 관심 있는 새로운 콘텐츠를 쉽게 탐색 가능  
 - 추천 영상 다양화로 서비스 체류 시간 증가 및 수익 증대  
-
-![기대효과](https://prod-files-secure.s3.us-west-2.amazonaws.com/e147a65b-e273-4ef6-8434-be616017032f/bc933dc9-3c48-4465-9a14-bc0e97f70201/Untitled.png)
 
 ---
 
